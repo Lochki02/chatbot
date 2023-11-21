@@ -9,6 +9,8 @@ function App() {
   const executeLlm = async () => {
     const cookies = new Cookies();
     let messages = cookies.get("history")
+    
+    console.log(messages)
 
     let history = ""
 
