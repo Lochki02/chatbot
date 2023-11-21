@@ -69,7 +69,7 @@ function App() {
     if (messages) {
       let obj = messages
 
-      obj.messages.push([
+      obj.messages.push(
         {
           isAi: false,
           content: question
@@ -78,7 +78,7 @@ function App() {
           isAi: true,
           content: res2.choices[0].message.content
         }
-      ])
+      )
 
       cookies.set("history", JSON.stringify(obj))
     }
