@@ -40,16 +40,10 @@ function App() {
 
     const review_question = `
       LegalOne is not a team of experts but an app that puts people in contact with lawyers
-      Don't say anything about yourself like "I'm an AI developed by OpenAI and I don't have a gender", just answer like specified below
-      Don't answer to anything that is not a legal matter or legal advice or informations about the law
 
       ${question}
-      
-      If the question above is not a legal matter or legal advice or informations about the law then precisely type down "I cannot answer this question" and point out nicely that you can answer only legal matters without specifying that the question above is not a legal matter or legal advice or informations about the law
-      Also invite the user to ask legal matters questions only
 
-      If the question above is a legal matter or legal advice or informations about the law then answer the question without pointing out that the question above is a legal matter or legal advice or informations about the law
-      then point out nicely to consult a lawyer from LegalOne app to answer the question more precisely. 
+      point out nicely to consult a lawyer from LegalOne app to answer the question more precisely. 
     `
   
     const req2 = await fetch(
@@ -60,19 +54,35 @@ function App() {
           "Content-Type": "application/json",
           "Authorization": `Bearer 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`
         },
-        body: JSON.stringify({
-          "model": "gpt-4",
-          "messages": [
-            { "role": "system", "content": "" },
-            { "role": "assistant", "content": "" },
-            { "role": "user", "content": review_question }
-          ],
-          "temperature": 0.05,
-          "max_tokens": 256,
-          "top_p": 1,
-          "frequency_penalty": 0,
-          "presence_penalty": 0
-        })
+        body: JSON.stringify(
+          /*{
+            "model": "gpt-4",
+            "messages": [
+              { "role": "system", "content": `Don't say anything about yourself like "I'm an AI developed by OpenAI and I don't have a gender", just answer like specified below. Don't answer to anything that is not a legal matter or legal advice or informations about the law. If the question above is not a legal matter or legal advice or informations about the law then precisely type down "I cannot answer this question" and point out nicely that you can answer only legal matters without specifying that the question is not a legal matter or legal advice or informations about the law
+              Also invite the user to ask legal matters questions only` },
+              { "role": "assistant", "content": "" },
+              { "role": "user", "content": review_question }
+            ],
+            "temperature": 0.05,
+            "max_tokens": 256,
+            "top_p": 1,
+            "frequency_penalty": 0,
+            "presence_penalty": 0
+          }*/
+          {
+            "model": "gpt-4",
+            "messages": [
+              { "role": "system", "content": `Comportati come Jarvis, l'intelligenza artificiale di Tony Stark` },
+              { "role": "assistant", "content": "" },
+              { "role": "user", "content": question }
+            ],
+            "temperature": 0.05,
+            "max_tokens": 256,
+            "top_p": 1,
+            "frequency_penalty": 0,
+            "presence_penalty": 0
+          }
+        )
       }
     )
 
